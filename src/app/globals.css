@@ -1,26 +1,42 @@
 @import "tailwindcss";
+@import "@fontsource/dancing-script";
+@import "@fontsource/nunito";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-buddy-yellow: #FFD166;
+  --color-buddy-blue: #6BA4D8;
+  --color-buddy-cream: #FFF8F0;
+  --color-buddy-beige: #F5ECD7;
+  --color-buddy-brown: #8B6F47;
+  --color-buddy-soft-pink: #FFB5C8;
+  --color-buddy-dark: #2D2D2D;
+
+  --font-handwritten: 'Dancing Script', cursive;
+  --font-body: 'Nunito', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: #FFF8F0;
+  font-family: 'Nunito', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFF8F0;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD166;
+  border-radius: 2px;
+}
+
+.text-handwritten {
+  font-family: 'Dancing Script', cursive;
 }
