@@ -28,6 +28,16 @@ body {
   padding: 0;
 }
 
+/* Dynamic viewport height — avoids iOS browser-chrome issue */
+.h-dvh {
+  height: calc(var(--dvh, 1vh) * 100);
+}
+
+/* Safe area bottom padding for finale footer */
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 8px);
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

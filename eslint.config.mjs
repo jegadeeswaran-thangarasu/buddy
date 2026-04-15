@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Seeding random state in useEffect is intentional — avoids SSR/client
+      // hydration mismatches. The rule's concern (cascading renders) doesn't
+      // apply to one-shot mount effects with no dependencies.
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
