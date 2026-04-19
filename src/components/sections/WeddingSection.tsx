@@ -2,11 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useState, useRef } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import { weddingPhotos, type PhotoItem } from "@/data/photos";
 
 export default function WeddingSection() {
+  const sectionRef = useSectionAudio("section10.mp3");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const lineInView = useInView(lineRef, { once: true, amount: 0.8 });
@@ -16,6 +18,7 @@ export default function WeddingSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col"
       style={{ backgroundColor: "#0d0d0d" }}
     >

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import { photoshootPhotos, type PhotoItem } from "@/data/photos";
@@ -52,12 +53,14 @@ function PhotoCard({ photo, index, height, rotateDeg = 0, onClick, sizes = "100v
 // ─── Section ─────────────────────────────────────────────────────────────────
 
 export default function PhotoshootSection() {
+  const sectionRef = useSectionAudio("section11.mp3");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
   const [p1, p2, p3, p4, p5, p6] = photoshootPhotos;
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col px-4 py-16"
       style={{ backgroundColor: "#F5ECD7" }}
     >

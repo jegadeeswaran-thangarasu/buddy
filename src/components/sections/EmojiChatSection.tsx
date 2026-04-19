@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 interface ChatMessage {
   emoji: string;
@@ -23,8 +24,10 @@ const MESSAGES: ChatMessage[] = [
 ];
 
 export default function EmojiChatSection() {
+  const sectionRef = useSectionAudio("section2.mp3");
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col px-4 py-16"
       style={{ backgroundColor: "#2D2D2D" }}
     >

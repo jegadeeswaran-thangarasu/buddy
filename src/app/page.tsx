@@ -6,8 +6,8 @@ import Entrance from "@/components/sections/Entrance";
 import LetterSection from "@/components/sections/LetterSection";
 import EmojiChatSection from "@/components/sections/EmojiChatSection";
 import BusRideSection from "@/components/sections/BusRideSection";
-import GiftsSection from "@/components/sections/GiftsSection";
-import RecordsSection from "@/components/sections/RecordsSection";
+import QuizSection from "@/components/sections/QuizSection";
+import TypewriterSection from "@/components/sections/TypewriterSection";
 import HardTimesSection from "@/components/sections/HardTimesSection";
 import MemoryGallerySection from "@/components/sections/MemoryGallerySection";
 import AmmaSection from "@/components/sections/AmmaSection";
@@ -41,9 +41,9 @@ export default function Home() {
           <LetterSection />
           <EmojiChatSection />
           <BusRideSection />
-          <GiftsSection />
-          <RecordsSection />
+          <QuizSection />
           <HardTimesSection />
+          <TypewriterSection />
           <MemoryGallerySection />
           <AmmaSection />
           <EngagementSection />

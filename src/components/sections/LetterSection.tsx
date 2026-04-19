@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 interface LetterLine {
   content: string | string[];
@@ -76,8 +77,10 @@ function LetterLine({
 }
 
 export default function LetterSection() {
+  const sectionRef = useSectionAudio("section1.mp3");
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20"
       style={{ backgroundColor: "#FFF8F0" }}
     >

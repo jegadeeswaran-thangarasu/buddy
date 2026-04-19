@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Image from "next/image";
 import Lightbox from "@/components/ui/Lightbox";
 import { engagementPhotos, type PhotoItem } from "@/data/photos";
 
 export default function EngagementSection() {
+  const sectionRef = useSectionAudio("section9.mp3");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
   const hero = engagementPhotos[0];
@@ -14,6 +16,7 @@ export default function EngagementSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col py-16"
       style={{ backgroundColor: "#1a0a0a" }}
     >

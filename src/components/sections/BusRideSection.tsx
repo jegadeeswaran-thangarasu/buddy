@@ -2,6 +2,7 @@
 
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import AnimatedPhotoPlaceholder from "@/components/ui/AnimatedPhotoPlaceholder";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -309,8 +310,10 @@ function ConfettiBurst() {
 // ─── BusRideSection ──────────────────────────────────────────────────────────
 
 export default function BusRideSection() {
+  const sectionRef = useSectionAudio("section3.mp3");
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center px-4 py-16"
       style={{ background: "linear-gradient(to bottom, #1a1a2e, #2d2d4e)" }}
     >

@@ -2,15 +2,18 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Polaroid from "@/components/ui/Polaroid";
 import Lightbox from "@/components/ui/Lightbox";
 import { memoryPhotos, type PhotoItem } from "@/data/photos";
 
 export default function MemoryGallerySection() {
+  const sectionRef = useSectionAudio("section7.mp3");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center px-4 py-16"
       style={{ backgroundColor: "#FFF8F0" }}
     >

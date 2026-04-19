@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -78,6 +79,7 @@ function lineStyle(type: LineType): React.CSSProperties {
 // ─── FinaleSection ────────────────────────────────────────────────────────────
 
 export default function FinaleSection() {
+  const sectionRef = useSectionAudio("section13.mp3");
   const letterEndRef = useRef<HTMLDivElement>(null);
   const letterInView = useInView(letterEndRef, { once: true, amount: 0.8 });
   const hasTriggered = useRef(false);
@@ -123,6 +125,7 @@ export default function FinaleSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center overflow-hidden"
       style={{ backgroundColor: "#FFF8F0" }}
     >

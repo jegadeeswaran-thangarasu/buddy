@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 export default function HardTimesSection() {
+  const sectionRef = useSectionAudio("section5.mp3");
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center px-4 py-16"
       style={{ backgroundColor: "#1C1C2E" }}
     >

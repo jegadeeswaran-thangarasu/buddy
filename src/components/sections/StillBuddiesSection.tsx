@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Polaroid from "@/components/ui/Polaroid";
 import type { PhotoItem } from "@/data/photos";
 
@@ -26,6 +27,7 @@ const TRAITS = [
 ];
 
 export default function StillBuddiesSection() {
+  const sectionRef = useSectionAudio("section12.mp3");
   const [count, setCount] = useState(0);
   const counterRef = useRef<HTMLDivElement>(null);
   const counterInView = useInView(counterRef, { once: true, amount: 0.5 });
@@ -44,6 +46,7 @@ export default function StillBuddiesSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center overflow-hidden"
       style={{ background: "linear-gradient(to bottom, #1a1a2e, #0d0d1a)" }}
     >

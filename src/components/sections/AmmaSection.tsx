@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Polaroid from "@/components/ui/Polaroid";
 import type { PhotoItem } from "@/data/photos";
 
@@ -24,8 +25,10 @@ const happyPhoto: PhotoItem = {
 };
 
 export default function AmmaSection() {
+  const sectionRef = useSectionAudio("section8.mp3");
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center py-16 overflow-hidden"
       style={{ background: "linear-gradient(to bottom, #FFF0DC, #FFE4BA)" }}
     >
