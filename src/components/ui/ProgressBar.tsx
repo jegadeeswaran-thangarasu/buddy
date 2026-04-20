@@ -1,21 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-export default function ProgressBar() {
-  const [progress, setProgress] = useState(0);
+interface ProgressBarProps {
+  currentSection: number;
+  totalSections: number;
+}
 
-  useEffect(() => {
-    const onScroll = () => {
-      const el = document.documentElement;
-      const scrolled = el.scrollTop || document.body.scrollTop;
-      const total = el.scrollHeight - el.clientHeight;
-      setProgress(total > 0 ? (scrolled / total) * 100 : 0);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+export default function ProgressBar({ currentSection, totalSections }: ProgressBarProps) {
+  const pct = totalSections > 1
+    ? (currentSection / (totalSections - 1)) * 100
+    : 0;
 
   return (
     <div
@@ -23,13 +18,22 @@ export default function ProgressBar() {
         position: "fixed",
         top: 0,
         left: 0,
+        right: 0,
         zIndex: 100,
-        height: "3px",
-        width: `${progress}%`,
-        background: "linear-gradient(to right, #FFD166, #6BA4D8)",
-        transition: "width 0.1s linear",
+        height: 3,
+        backgroundColor: "rgba(255,255,255,0.1)",
         pointerEvents: "none",
       }}
-    />
+    >
+      <motion.div
+        style={{
+          height: "100%",
+          background: "linear-gradient(to right, #FFD166, #6BA4D8)",
+          transformOrigin: "left",
+        }}
+        animate={{ width: `${pct}%` }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      />
+    </div>
   );
 }

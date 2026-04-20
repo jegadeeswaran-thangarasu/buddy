@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 interface LetterLine {
@@ -76,8 +77,16 @@ function LetterLine({
   );
 }
 
-export default function LetterSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function LetterSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section1.mp3");
+
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 4000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section
       ref={sectionRef}

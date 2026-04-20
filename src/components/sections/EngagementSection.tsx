@@ -1,31 +1,38 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
-import Image from "next/image";
+import FloatingPhoto from "@/components/ui/FloatingPhoto";
 import Lightbox from "@/components/ui/Lightbox";
 import { engagementPhotos, type PhotoItem } from "@/data/photos";
 
-export default function EngagementSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function EngagementSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section9.mp3");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
 
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 4000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const hero = engagementPhotos[0];
-  const secondary = engagementPhotos.slice(1);
+  const secondary = engagementPhotos.slice(1, 4);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col py-16"
-      style={{ backgroundColor: "#1a0a0a" }}
+      className="relative min-h-screen flex flex-col pb-32"
+      style={{ backgroundColor: "#1a0a0a", maxWidth: "100vw", overflow: "hidden" }}
     >
       {/* Header */}
       <motion.div
-        className="flex flex-col items-center text-center px-4 mb-10"
+        className="flex flex-col items-center text-center px-4 pt-16 mb-8"
         initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
         <p
@@ -55,61 +62,62 @@ export default function EngagementSection() {
         </motion.span>
       </motion.div>
 
-      {/* Hero photo */}
-      <motion.div
-        className="relative mx-4 rounded-2xl overflow-hidden"
-        style={{ height: "400px" }}
-        initial={{ opacity: 0, scale: 1.05 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        onClick={() => setSelectedPhoto(hero)}
+      {/* Hero photo — portrait, fills width */}
+      <div
+        style={{
+          width: "calc(100% - 32px)",
+          margin: "0 16px",
+          aspectRatio: "3 / 4",
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: 16,
+          minWidth: 0,
+        }}
       >
-        <Image
-          src={hero.src}
-          alt={hero.alt}
-          fill
-          className="object-cover cursor-pointer"
-          sizes="(max-width: 640px) calc(100vw - 32px), 608px"
-          priority
+        <FloatingPhoto
+          photo={hero}
+          index={0}
+          delay={0.2}
+          rotation={-1}
+          onClick={() => setSelectedPhoto(hero)}
         />
-        {/* Golden bottom overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(transparent 55%, #1a0a0a)" }}
-        />
-        {/* Caption overlay */}
-        <p
-          className="absolute bottom-4 left-4 text-handwritten text-xl"
-          style={{ color: "white" }}
-        >
-          The beginning of forever 💍
-        </p>
-      </motion.div>
+      </div>
 
-      {/* Secondary row */}
-      <div className="flex gap-2 mx-4 mt-3">
-        {secondary.map((photo, index) => (
-          <motion.div
-            key={photo.id}
-            className="relative flex-1 rounded-xl overflow-hidden cursor-pointer"
-            style={{ height: "130px" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setSelectedPhoto(photo)}
-          >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 33vw, 200px"
-            />
-          </motion.div>
-        ))}
+      {/* Secondary row — 3 equal columns */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+          gap: 8,
+          width: "calc(100% - 32px)",
+          margin: "12px 16px 0",
+          overflow: "hidden",
+        }}
+      >
+        {secondary.map((photo, i) => {
+          const rotations = [2, -1, 3];
+          const delays = [0.4, 0.6, 0.8];
+          return (
+            <div
+              key={photo.id}
+              style={{
+                aspectRatio: "3 / 4",
+                width: "100%",
+                overflow: "hidden",
+                borderRadius: 12,
+                minWidth: 0,
+              }}
+            >
+              <FloatingPhoto
+                photo={photo}
+                index={i + 1}
+                delay={delays[i]}
+                rotation={rotations[i]}
+                onClick={() => setSelectedPhoto(photo)}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* Closing caption */}
@@ -117,9 +125,8 @@ export default function EngagementSection() {
         className="text-handwritten text-2xl text-center px-4 py-8"
         style={{ color: "#FFD166" }}
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
       >
         From best friends to forever. 💛
       </motion.p>

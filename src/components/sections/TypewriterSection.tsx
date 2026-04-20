@@ -364,10 +364,17 @@ function Envelope({ onOpen }: { onOpen: () => void }) {
 
 // ─── TypewriterSection ────────────────────────────────────────────────────────
 
-export default function TypewriterSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function TypewriterSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section6.mp3");
   const [envelopeOpen, setEnvelopeOpen] = useState(false);
   const [visibleWords, setVisibleWords] = useState<VisibleWord[]>([]);
+
+  useEffect(() => {
+    if (envelopeOpen) onSectionComplete?.();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [envelopeOpen]);
   const [done, setDone] = useState(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 

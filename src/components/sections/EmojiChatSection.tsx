@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 interface ChatMessage {
@@ -23,8 +24,16 @@ const MESSAGES: ChatMessage[] = [
   { emoji: "💛", side: "right", color: "#FFD166" },
 ];
 
-export default function EmojiChatSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function EmojiChatSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section2.mp3");
+
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 3000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section
       ref={sectionRef}

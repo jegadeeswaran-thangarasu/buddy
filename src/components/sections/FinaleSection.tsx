@@ -78,7 +78,9 @@ function lineStyle(type: LineType): React.CSSProperties {
 
 // ─── FinaleSection ────────────────────────────────────────────────────────────
 
-export default function FinaleSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function FinaleSection(_props: Props) {
   const sectionRef = useSectionAudio("section13.mp3");
   const letterEndRef = useRef<HTMLDivElement>(null);
   const letterInView = useInView(letterEndRef, { once: true, amount: 0.8 });

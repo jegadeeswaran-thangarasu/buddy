@@ -26,22 +26,28 @@ const TRAITS = [
   { emoji: "💍", label: "Best friends. Forever." },
 ];
 
-export default function StillBuddiesSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function StillBuddiesSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section12.mp3");
   const [count, setCount] = useState(0);
   const counterRef = useRef<HTMLDivElement>(null);
   const counterInView = useInView(counterRef, { once: true, amount: 0.5 });
 
-  // Count 0 → 10 using setInterval, triggered once on scroll
+  // Count 0 → 10, then signal complete
   useEffect(() => {
     if (!counterInView) return;
     let current = 0;
     const interval = setInterval(() => {
       current += 1;
       setCount(current);
-      if (current >= 10) clearInterval(interval);
+      if (current >= 10) {
+        clearInterval(interval);
+        setTimeout(() => onSectionComplete?.(), 500);
+      }
     }, 200);
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counterInView]);
 
   return (

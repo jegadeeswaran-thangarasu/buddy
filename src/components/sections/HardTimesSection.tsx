@@ -1,10 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
 
-export default function HardTimesSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function HardTimesSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section5.mp3");
+
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 4000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section
       ref={sectionRef}

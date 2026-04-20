@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
 import Polaroid from "@/components/ui/Polaroid";
 import type { PhotoItem } from "@/data/photos";
@@ -24,8 +25,16 @@ const happyPhoto: PhotoItem = {
   rotation: 2,
 };
 
-export default function AmmaSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function AmmaSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section8.mp3");
+
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 5000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section
       ref={sectionRef}

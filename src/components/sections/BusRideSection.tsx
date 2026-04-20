@@ -309,8 +309,16 @@ function ConfettiBurst() {
 
 // ─── BusRideSection ──────────────────────────────────────────────────────────
 
-export default function BusRideSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function BusRideSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section3.mp3");
+
+  useEffect(() => {
+    const t = setTimeout(() => onSectionComplete?.(), 5000);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <section
       ref={sectionRef}

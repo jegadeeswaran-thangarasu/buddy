@@ -184,13 +184,20 @@ type AnswerState =
   | { type: "correct" }
   | { type: "wrong"; selected: number; showCorrect: boolean };
 
-export default function QuizSection() {
+interface Props { onSectionComplete?: () => void }
+
+export default function QuizSection({ onSectionComplete }: Props) {
   const sectionRef = useSectionAudio("section4.mp3");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [answerState, setAnswerState] = useState<AnswerState>({ type: "idle" });
   const [quizComplete, setQuizComplete] = useState(false);
   const [showNextBtn, setShowNextBtn] = useState(false);
+
+  useEffect(() => {
+    if (quizComplete) onSectionComplete?.();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quizComplete]);
 
   const q = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
@@ -389,28 +396,6 @@ export default function QuizSection() {
             </>
           )}
 
-          <motion.button
-            style={{
-              marginTop: 32,
-              background: BUDDY_YELLOW,
-              color: BUDDY_DARK,
-              border: "none",
-              borderRadius: 9999,
-              padding: "12px 32px",
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: 14,
-              fontWeight: 700,
-              cursor: "pointer",
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => {
-              const next = document.getElementById("hard-times-section");
-              if (next) next.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Continue reading 💛
-          </motion.button>
         </motion.div>
       </section>
     );
