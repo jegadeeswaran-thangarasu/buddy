@@ -22,7 +22,7 @@ const questions: Question[] = [
   {
     id: 1,
     question: "என்னன்னா, what do we call each other?",
-    options: ["Kanna & Kutti", "Buddy & Dai", "Eruma Maadu & Paithiam"],
+    options: ["Loosu", "Buddy", "Eruma Maadu & Paithiam"],
     correct: 1,
     correctReaction: "Aama aama! Correct! Nee thaan en Buddy. Always. 💛",
     wrongReaction: "Aiyo loosu! Wrong answer! Seekiram try pannunga 😄",
@@ -193,6 +193,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
   const [answerState, setAnswerState] = useState<AnswerState>({ type: "idle" });
   const [quizComplete, setQuizComplete] = useState(false);
   const [showNextBtn, setShowNextBtn] = useState(false);
+  const [showGotIt, setShowGotIt] = useState(false);
 
   useEffect(() => {
     if (quizComplete) onSectionComplete?.();
@@ -210,10 +211,10 @@ export default function QuizSection({ onSectionComplete }: Props) {
     if (answerState.type === "wrong") {
       const t1 = setTimeout(() => {
         setAnswerState({ type: "wrong", selected: (answerState as { type: "wrong"; selected: number; showCorrect: boolean }).selected, showCorrect: true });
-      }, 1500);
+      }, 1000);
       const t2 = setTimeout(() => {
-        advance();
-      }, 2500);
+        setShowGotIt(true);
+      }, 1500);
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);
@@ -224,6 +225,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
 
   function advance() {
     setShowNextBtn(false);
+    setShowGotIt(false);
     if (currentIndex + 1 >= questions.length) {
       setQuizComplete(true);
     } else {
@@ -700,17 +702,56 @@ export default function QuizSection({ onSectionComplete }: Props) {
                 >
                   {q.wrongReaction}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    fontSize: 12,
-                    color: "rgba(255,255,255,0.5)",
-                    textAlign: "center",
-                    marginTop: 4,
-                  }}
-                >
-                  Correct answer coming up... 😄
-                </p>
+                {(answerState as { type: "wrong"; selected: number; showCorrect: boolean }).showCorrect && (
+                  <motion.p
+                    style={{
+                      fontFamily: "'Nunito', sans-serif",
+                      fontSize: 12,
+                      color: BUDDY_YELLOW,
+                      textAlign: "center",
+                      marginTop: 4,
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    ✓ This was the answer 💛
+                  </motion.p>
+                )}
+
+                <AnimatePresence>
+                  {showGotIt && (
+                    <motion.div
+                      style={{ textAlign: "center", marginTop: 12 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                    >
+                      <motion.button
+                        style={{
+                          background: "rgba(255,255,255,0.1)",
+                          border: "1px solid rgba(255,255,255,0.2)",
+                          borderRadius: 9999,
+                          paddingLeft: 24,
+                          paddingRight: 24,
+                          paddingTop: 12,
+                          paddingBottom: 12,
+                          fontFamily: "'Nunito', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#fff",
+                          cursor: "pointer",
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.97 }}
+                        onClick={advance}
+                      >
+                        Got it 💛
+                      </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
           </AnimatePresence>

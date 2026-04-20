@@ -17,20 +17,20 @@ const LETTER_LINES: LetterLine[] = [
     style: { color: "#2D2D2D" },
   },
   {
-    content: "I know you weren't expecting this.",
+    content: "Bet you didn’t see this coming.",
     className: "text-sm mt-4 leading-relaxed",
     style: { color: "#8B6F47", fontFamily: "'Nunito', sans-serif" },
   },
   {
-    content: "But then again — when have I ever been predictable? 😏",
+    content: "But then again… when have I ever been predictable? 😏",
     className: "text-sm mt-2",
     style: { color: "#2D2D2D", fontFamily: "'Nunito', sans-serif" },
   },
   {
     content: [
-      "10 years ago, two introverts found each other.",
+      "Ten years ago, two quiet souls crossed paths.",
       "No drama. No grand gestures.",
-      "Just emojis. And a bus ride. And everything after.",
+      "Just emojis… a bus ride… and everything that followed.",
     ],
     className: "text-sm mt-4 leading-relaxed",
     style: { color: "#2D2D2D", fontFamily: "'Nunito', sans-serif" },
@@ -38,18 +38,17 @@ const LETTER_LINES: LetterLine[] = [
   {
     content: [
       "This is our story, Buddy.",
-      "Scroll slowly. Feel it all. 💛",
+      "Take your time… feel every moment. 💛",
     ],
     className: "text-sm mt-4 leading-relaxed",
     style: { color: "#2D2D2D", fontFamily: "'Nunito', sans-serif" },
   },
   {
-    content: "— Dai 💙",
+    content: "— Jega 💙",
     className: "text-handwritten text-xl mt-6 text-right",
     style: { color: "#6BA4D8" },
   },
 ];
-
 function LetterLine({
   line,
   index,

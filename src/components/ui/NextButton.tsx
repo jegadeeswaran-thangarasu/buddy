@@ -40,7 +40,6 @@ export default function NextButton({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 8,
             zIndex: 50,
             pointerEvents: "auto",
           }}
@@ -49,6 +48,16 @@ export default function NextButton({
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
         >
+          {/* Decorative line above button */}
+          <div
+            style={{
+              width: 40,
+              height: 1,
+              background: "rgba(255,209,102,0.4)",
+              marginBottom: 8,
+            }}
+          />
+
           {/* Button */}
           <motion.button
             onClick={handleTap}
@@ -57,23 +66,20 @@ export default function NextButton({
               position: "relative",
               overflow: "hidden",
               backgroundColor: "#FFD166",
-              color: "#2D2D2D",
               borderRadius: 9999,
-              paddingLeft: 32,
-              paddingRight: 32,
-              paddingTop: 16,
-              paddingBottom: 16,
+              paddingLeft: 28,
+              paddingRight: 28,
+              paddingTop: 14,
+              paddingBottom: 14,
+              minWidth: 260,
+              maxWidth: Math.min(320, typeof window !== "undefined" ? window.innerWidth - 48 : 320),
               border: "none",
               cursor: "pointer",
-              boxShadow: "0 8px 32px rgba(255,209,102,0.4)",
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 700,
-              fontSize: 14,
+              boxShadow: "0 8px 32px rgba(255,209,102,0.35)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               gap: 2,
-              maxWidth: "calc(100vw - 48px)",
             }}
           >
             {/* Ripple */}
@@ -98,33 +104,53 @@ export default function NextButton({
               )}
             </AnimatePresence>
 
-            {/* Arrow */}
-            <motion.span
-              style={{ fontSize: 10, opacity: 0.6, lineHeight: 1 }}
-              animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-            >
-              ↑
-            </motion.span>
-
-            {/* Text */}
-            <span style={{ position: "relative", zIndex: 1 }}>{text}</span>
-          </motion.button>
-
-          {/* Subtext */}
-          {subtext && (
-            <p
+            {/* Decorative dot */}
+            <span
               style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: 11,
-                color: variant === "dark" ? "rgba(255,255,255,0.4)" : "rgba(139,111,71,0.6)",
-                textAlign: "center",
-                margin: 0,
+                fontSize: 10,
+                color: "rgba(255,209,102,0.6)",
+                lineHeight: 1,
+                position: "relative",
+                zIndex: 1,
               }}
             >
-              {subtext}
-            </p>
-          )}
+              ✦
+            </span>
+
+            {/* Main quote text */}
+            <span
+              style={{
+                position: "relative",
+                zIndex: 1,
+                fontFamily: "'Dancing Script', cursive",
+                fontSize: 16,
+                fontWeight: 400,
+                color: "#2D2D2D",
+                textAlign: "center",
+                lineHeight: 1.3,
+              }}
+            >
+              {text}
+            </span>
+
+            {/* Subtext */}
+            {subtext && (
+              <span
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  fontFamily: "'Nunito', sans-serif",
+                  fontSize: 11,
+                  color: variant === "dark" ? "rgba(255,255,255,0.5)" : "rgba(45,45,45,0.6)",
+                  textAlign: "center",
+                  fontStyle: "italic",
+                  marginTop: 2,
+                }}
+              >
+                {subtext}
+              </span>
+            )}
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>

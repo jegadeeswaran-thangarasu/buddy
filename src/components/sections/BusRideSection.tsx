@@ -279,7 +279,7 @@ function ConfettiBurst() {
         className="inline-block text-handwritten text-sm px-4 py-1 rounded-full mb-4"
         style={{ backgroundColor: "#6BA4D8", color: "white" }}
       >
-        November 17, 2016
+        November 17, 2018
       </span>
 
       {/* She said yes */}
@@ -334,7 +334,7 @@ export default function BusRideSection({ onSectionComplete }: Props) {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        November 2016
+        November 2018
       </motion.p>
 
       {/* ── PART A: Animated bus scene ── */}
@@ -360,7 +360,7 @@ export default function BusRideSection({ onSectionComplete }: Props) {
           className="inline-block text-handwritten text-sm px-4 py-1 rounded-full"
           style={{ backgroundColor: "#FFD166", color: "#2D2D2D" }}
         >
-          November 7, 2016
+          November 7, 2018
         </span>
         <p
           className="text-sm"
@@ -415,7 +415,7 @@ export default function BusRideSection({ onSectionComplete }: Props) {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <AnimatedPhotoPlaceholder
-          label="November 2016 🚌"
+          label="November 2018 🚌"
           rotateDeg={1}
           width="140px"
         />

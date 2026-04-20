@@ -6,7 +6,6 @@ import LetterSection from "@/components/sections/LetterSection";
 import EmojiChatSection from "@/components/sections/EmojiChatSection";
 import BusRideSection from "@/components/sections/BusRideSection";
 import QuizSection from "@/components/sections/QuizSection";
-import HardTimesSection from "@/components/sections/HardTimesSection";
 import TypewriterSection from "@/components/sections/TypewriterSection";
 import MemoryGallerySection from "@/components/sections/MemoryGallerySection";
 import AmmaSection from "@/components/sections/AmmaSection";
@@ -29,7 +28,6 @@ const sectionComponents: SectionComponent[] = [
   EmojiChatSection,
   BusRideSection,
   QuizSection,
-  HardTimesSection,
   TypewriterSection,
   MemoryGallerySection,
   AmmaSection,
@@ -43,7 +41,6 @@ const sectionComponents: SectionComponent[] = [
 const DARK_SECTIONS = new Set([
   "emoji-chat",
   "bus-ride",
-  "hard-times",
   "still-buddies",
   "engagement",
   "wedding",
