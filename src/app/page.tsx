@@ -5,13 +5,13 @@ import Entrance from "@/components/sections/Entrance";
 import LetterSection from "@/components/sections/LetterSection";
 import EmojiChatSection from "@/components/sections/EmojiChatSection";
 import BusRideSection from "@/components/sections/BusRideSection";
-import QuizSection from "@/components/sections/QuizSection";
+// import QuizSection from "@/components/sections/QuizSection";
 import TypewriterSection from "@/components/sections/TypewriterSection";
-import MemoryGallerySection from "@/components/sections/MemoryGallerySection";
-import AmmaSection from "@/components/sections/AmmaSection";
-import EngagementSection from "@/components/sections/EngagementSection";
-import WeddingSection from "@/components/sections/WeddingSection";
-import PhotoshootSection from "@/components/sections/PhotoshootSection";
+// import MemoryGallerySection from "@/components/sections/MemoryGallerySection";
+// import AmmaSection from "@/components/sections/AmmaSection";
+// import EngagementSection from "@/components/sections/EngagementSection";
+// import WeddingSection from "@/components/sections/WeddingSection";
+// import PhotoshootSection from "@/components/sections/PhotoshootSection";
 import StillBuddiesSection from "@/components/sections/StillBuddiesSection";
 import FinaleSection from "@/components/sections/FinaleSection";
 import MusicPlayer from "@/components/ui/MusicPlayer";
@@ -23,19 +23,22 @@ import { SECTIONS } from "@/lib/sectionConfig";
 
 type SectionComponent = React.ComponentType<{ onSectionComplete?: () => void }>;
 
+/*
+  TO RESTORE PHOTO SECTIONS:
+  1. Uncomment imports above (MemoryGallerySection, EngagementSection, WeddingSection, PhotoshootSection)
+  2. Add back to sectionComponents array below
+  3. Uncomment entries in sectionConfig.ts
+  4. Uncomment arrays in photos.ts
+  5. Add real photos to /public/images/ folders
+  6. Replace PLACEHOLDER urls in photos.ts
+*/
 const sectionComponents: SectionComponent[] = [
-  LetterSection,
-  EmojiChatSection,
-  BusRideSection,
-  QuizSection,
-  TypewriterSection,
-  MemoryGallerySection,
-  AmmaSection,
-  EngagementSection,
-  WeddingSection,
-  PhotoshootSection,
-  StillBuddiesSection,
-  FinaleSection,
+  LetterSection,        // 1
+  EmojiChatSection,     // 2
+  BusRideSection,       // 3
+  TypewriterSection,    // 4
+  StillBuddiesSection,  // 5
+  FinaleSection,        // 6
 ];
 
 const DARK_SECTIONS = new Set([
@@ -114,6 +117,62 @@ export default function Home() {
       />
 
       <MusicPlayer />
+
+      {process.env.NODE_ENV === "development" && (
+        <div
+          style={{
+            position: "fixed",
+            top: "12px",
+            right: "12px",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            gap: "6px",
+            alignItems: "flex-end",
+          }}
+        >
+          <button
+            onClick={() => {
+              if (currentSection < sectionComponents.length - 1) {
+                setShowNextButton(false);
+                setCurrentSection((prev) => prev + 1);
+              }
+            }}
+            style={{
+              background: "rgba(0,0,0,0.6)",
+              color: "white",
+              border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: "999px",
+              padding: "6px 14px",
+              fontSize: "11px",
+              fontFamily: "monospace",
+              cursor: "pointer",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            skip → ({currentSection + 1}/{sectionComponents.length})
+          </button>
+          <button
+            onClick={() => {
+              setCurrentSection(0);
+              setShowNextButton(false);
+            }}
+            style={{
+              background: "rgba(0,0,0,0.6)",
+              color: "white",
+              border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: "999px",
+              padding: "6px 14px",
+              fontSize: "11px",
+              fontFamily: "monospace",
+              cursor: "pointer",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            restart ↺
+          </button>
+        </div>
+      )}
     </>
   );
 }

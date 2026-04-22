@@ -3,8 +3,6 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
-import AnimatedPhotoPlaceholder from "@/components/ui/AnimatedPhotoPlaceholder";
-
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 interface ConfettiPiece {
@@ -405,21 +403,6 @@ export default function BusRideSection({ onSectionComplete }: Props) {
       <div className="mt-10 flex flex-col items-center w-full">
         <ConfettiBurst />
       </div>
-
-      {/* Photo placeholder */}
-      <motion.div
-        className="mt-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <AnimatedPhotoPlaceholder
-          label="November 2018 🚌"
-          rotateDeg={1}
-          width="140px"
-        />
-      </motion.div>
 
       {/* Section transition → Gifts cream */}
       <div

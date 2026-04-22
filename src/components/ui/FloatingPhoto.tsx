@@ -1,3 +1,4 @@
+/* Used by photo sections — preserved for future use */
 "use client";
 
 import { motion, useMotionValue, useAnimation } from "framer-motion";

@@ -6,12 +6,12 @@ import { useSectionAudio } from "@/hooks/useSectionAudio";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-type LineType = "greeting" | "body" | "closing" | "signature";
+type LineStyle = "heading" | "body" | "special" | "signature" | "spacer";
 
 interface LetterLine {
   text: string;
-  type: LineType;
-  mt?: string;
+  style: LineStyle;
+  delay: number;
 }
 
 type ConfettiShape = "circle" | "rect" | "star";
@@ -41,16 +41,57 @@ interface FloatingHeart {
 const PRE_LINES = ["Two years of marriage.", "Ten years of us."];
 
 const LETTER_LINES: LetterLine[] = [
-  { text: "Hey Buddy,",                                                      type: "greeting" },
-  { text: "You helped me pass. You helped me grow.",                         type: "body", mt: "mt-4" },
-  { text: "You kept my laptop safe.",                                         type: "body" },
-  { text: "You said yes on a bus.",                                           type: "body" },
-  { text: "You convinced Amma with your love.",                               type: "body" },
-  { text: "You show up — every single day.",                                  type: "body" },
-  { text: "I don't know what I did to deserve you.",                          type: "body", mt: "mt-4" },
-  { text: "But I know I'll spend every year trying to be worthy of it.",      type: "body" },
-  { text: "Still your Dai. Always your buddy.",                               type: "closing", mt: "mt-4" },
-  { text: "— 💙",                                                             type: "signature", mt: "mt-2" },
+  { text: "Hey Buddy,",                                                          style: "heading",   delay: 0 },
+  { text: "",                                                                    style: "spacer",    delay: 0.8 },
+  { text: "So… I hope you found this surprise by now 😄",                       style: "body",      delay: 1.2 },
+  { text: "",                                                                    style: "spacer",    delay: 2.4 },
+  { text: "And yes — before you say anything —",                                 style: "body",      delay: 2.8 },
+  { text: "I know this came a little late.",                                     style: "body",      delay: 3.8 },
+  { text: "But come on… you married me.",                                        style: "body",      delay: 4.6 },
+  { text: "You already know punctuality and I",                                  style: "body",      delay: 5.4 },
+  { text: "have a complicated relationship 😌",                                  style: "body",      delay: 6.0 },
+  { text: "",                                                                    style: "spacer",    delay: 6.8 },
+  { text: "But honestly, the delay just means one thing —",                      style: "body",      delay: 7.2 },
+  { text: "I wanted it to be worth the wait.",                                   style: "special",   delay: 8.2 },
+  { text: "",                                                                    style: "spacer",    delay: 9.2 },
+  { text: "I was imagining your reaction",                                       style: "body",      delay: 9.6 },
+  { text: "while you were reading the first letter…",                            style: "body",      delay: 10.5 },
+  { text: "probably smiling, maybe rolling your eyes,",                          style: "body",      delay: 11.4 },
+  { text: "maybe calling me \"drama king\" in your head 😄",                    style: "body",      delay: 12.3 },
+  { text: "But that's exactly why I love doing this —",                          style: "body",      delay: 13.3 },
+  { text: "because it's you. 💛",                                                style: "special",   delay: 14.0 },
+  { text: "",                                                                    style: "spacer",    delay: 14.8 },
+  { text: "Life with you is never boring.",                                      style: "body",      delay: 15.2 },
+  { text: "Even in the simplest moments,",                                       style: "body",      delay: 16.0 },
+  { text: "there's something special…",                                          style: "body",      delay: 16.8 },
+  { text: "random conversations, silly arguments,",                              style: "body",      delay: 17.6 },
+  { text: "inside jokes, or just sitting together",                              style: "body",      delay: 18.4 },
+  { text: "doing nothing —",                                                     style: "body",      delay: 19.0 },
+  { text: "it all somehow feels complete. 🥹",                                  style: "special",   delay: 19.6 },
+  { text: "",                                                                    style: "spacer",    delay: 20.4 },
+  { text: "I may not always say things at the right time…",                      style: "body",      delay: 20.8 },
+  { text: "or in the perfect way…",                                              style: "body",      delay: 21.8 },
+  { text: "but everything I do comes from",                                      style: "body",      delay: 22.6 },
+  { text: "a place full of love for you. Always. 💛",                            style: "special",   delay: 23.4 },
+  { text: "",                                                                    style: "spacer",    delay: 24.4 },
+  { text: "Thank you for being patient with me 🏆",                              style: "body",      delay: 24.8 },
+  { text: "for understanding me even when",                                      style: "body",      delay: 25.8 },
+  { text: "I don't explain properly,",                                           style: "body",      delay: 26.6 },
+  { text: "and for still choosing me every single day.",                         style: "body",      delay: 27.4 },
+  { text: "",                                                                    style: "spacer",    delay: 28.4 },
+  { text: "If this made you smile even a little —",                              style: "body",      delay: 28.8 },
+  { text: "mission successful 😌",                                               style: "special",   delay: 29.8 },
+  { text: "",                                                                    style: "spacer",    delay: 30.6 },
+  { text: "Now come here…",                                                      style: "body",      delay: 31.0 },
+  { text: "I deserve at least one hug",                                          style: "body",      delay: 31.8 },
+  { text: "for all this effort 🤗",                                              style: "body",      delay: 32.4 },
+  { text: "",                                                                    style: "spacer",    delay: 33.2 },
+  { text: "Happy 2 years to us, Buddy ❤️",                                       style: "special",   delay: 33.6 },
+  { text: "More love, more chaos, more memories —",                              style: "body",      delay: 34.8 },
+  { text: "together. 💛💙",                                                      style: "body",      delay: 35.6 },
+  { text: "",                                                                    style: "spacer",    delay: 36.4 },
+  { text: "Luv u always 😘",                                                     style: "signature", delay: 36.8 },
+  { text: "💛💙",                                                                style: "signature", delay: 37.8 },
 ];
 
 const CONFETTI_COLORS = ["#FFD166", "#6BA4D8", "#FFB5C8", "#ffffff", "#FFB347"];
@@ -58,21 +99,23 @@ const CONFETTI_COUNT = 50;
 
 const DATE_BADGES = [
   { label: "💍 March 7, 2024",  bg: "#FFD166", color: "#2D2D2D" },
-  { label: "💒 April 22, 2024", bg: "#6BA4D8", color: "white"    },
+  { label: "💒 April 22, 2024", bg: "#6BA4D8", color: "white"   },
 ];
 
 // ─── Line style helpers ───────────────────────────────────────────────────────
 
-function lineStyle(type: LineType): React.CSSProperties {
-  switch (type) {
-    case "greeting":
+function lineStyle(style: LineStyle): React.CSSProperties {
+  switch (style) {
+    case "heading":
       return { fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#2D2D2D" };
     case "body":
       return { fontFamily: "'Nunito', sans-serif", fontSize: "0.875rem", color: "#8B6F47" };
-    case "closing":
+    case "special":
       return { fontFamily: "'Nunito', sans-serif", fontSize: "0.875rem", color: "#2D2D2D", fontWeight: 600 };
     case "signature":
       return { fontFamily: "'Dancing Script', cursive", fontSize: "1.25rem", color: "#6BA4D8" };
+    case "spacer":
+      return {};
   }
 }
 
@@ -117,7 +160,7 @@ export default function FinaleSection(_props: Props) {
     );
   }, []);
 
-  // Trigger confetti once the letter bottom is in view
+  // Trigger confetti once the letter bottom is in view (after ~38s of reading)
   useEffect(() => {
     if (letterInView && !hasTriggered.current && confetti.length > 0) {
       hasTriggered.current = true;
@@ -151,7 +194,6 @@ export default function FinaleSection(_props: Props) {
 
       {/* ── PART 1 — Big Reveal ── */}
       <div className="relative z-10 flex flex-col items-center text-center pt-20 px-6 w-full">
-        {/* Pre-text lines */}
         {PRE_LINES.map((line, i) => (
           <motion.p
             key={i}
@@ -212,19 +254,23 @@ export default function FinaleSection(_props: Props) {
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        {LETTER_LINES.map((line, i) => (
-          <motion.p
-            key={i}
-            className={line.mt ?? ""}
-            style={{ ...lineStyle(line.type), lineHeight: "1.75" }}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.18, ease: "easeOut" }}
-          >
-            {line.text}
-          </motion.p>
-        ))}
+        {LETTER_LINES.map((line, i) => {
+          if (line.style === "spacer") {
+            return <div key={i} style={{ height: 10 }} />;
+          }
+          return (
+            <motion.p
+              key={i}
+              style={{ ...lineStyle(line.style), lineHeight: "1.75" }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.07, ease: "easeOut" }}
+            >
+              {line.text}
+            </motion.p>
+          );
+        })}
 
         {/* Confetti trigger anchor */}
         <div ref={letterEndRef} style={{ height: "1px" }} />
@@ -326,14 +372,14 @@ export default function FinaleSection(_props: Props) {
 
         {/* Easter egg — barely visible */}
         <p
-          className="text-xs mt-6 pb-2"
+          className="text-xs mt-6 pb-8 text-center"
           style={{
             color: "#8B6F47",
             fontFamily: "'Nunito', sans-serif",
-            opacity: 0.3,
+            opacity: 0.25,
           }}
         >
-          dai loves buddy. always. 🚌
+          punctuality and I have a complicated relationship 😌
         </p>
       </div>
     </section>

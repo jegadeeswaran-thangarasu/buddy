@@ -21,23 +21,22 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    question: "என்னன்னா, what do we call each other?",
-    options: ["Loosu", "Buddy", "Eruma Maadu & Paithiam"],
+    question: "What do we call each other? 💛",
+    options: ["Babe & Honey", "Buddy & Dai", "Kanna & Kutti"],
     correct: 1,
-    correctReaction: "Aama aama! Correct! Nee thaan en Buddy. Always. 💛",
-    wrongReaction: "Aiyo loosu! Wrong answer! Seekiram try pannunga 😄",
+    correctReaction: "That's my Buddy! You know us by heart. 💛",
+    wrongReaction: "Really? You forgot our favourite thing? 😄💛",
     revealText: "10 years and it's still Buddy & Dai. Always. 💛",
     animation: "confetti",
   },
   {
     id: 2,
     question: "Where did Dai propose to Buddy? 🚌",
-    options: ["Temple", "On a bus", "College canteen"],
+    options: ["At the temple", "On a bus", "College canteen"],
     correct: 1,
-    correctReaction:
-      "Wah! Bus-la propose pannen nu marakala? Nee loosu illa! 🚌💛",
-    wrongReaction: "Enna paithiam! Wrong da Buddy! Try again 😂",
-    revealText: "November 7, 2016. A bus ride she'll never forget. 💛",
+    correctReaction: "A bus ride she'll never forget! 🚌💛",
+    wrongReaction: "Nope! Love found us on a bus. 😄💛",
+    revealText: "November 7, 2016. The best bus ride ever. 💛",
     animation: "bus",
   },
   {
@@ -45,8 +44,8 @@ const questions: Question[] = [
     question: "When did we get engaged? 💍",
     options: ["February 14, 2024", "April 22, 2024", "March 7, 2024"],
     correct: 2,
-    correctReaction: "Aama! March 7 — en life-la special day! Nee thaan best! 💍",
-    wrongReaction: "Aiyo Buddy! Namma engagement date maranthutte? 😅",
+    correctReaction: "March 7 — the day it became official! 💍💛",
+    wrongReaction: "Close but no ring! Try again, Buddy. 😄💍",
     revealText: "March 7, 2024. The day it became official. 💍",
     animation: "rings",
   },
@@ -55,8 +54,8 @@ const questions: Question[] = [
     question: "When did we get married? 💒",
     options: ["March 7, 2024", "May 1, 2024", "April 22, 2024"],
     correct: 2,
-    correctReaction: "Yes! April 22 — en life-la best day! Naan romba lucky! 💒💛",
-    wrongReaction: "Enna loosu! Namma wedding date theriyala? 😂",
+    correctReaction: "April 22 — the best day of our lives! 💒💛",
+    wrongReaction: "That's not it! Our wedding day is unforgettable. 😄💒",
     revealText: "April 22, 2024. The best day of our lives. 💛💙",
     animation: "hearts",
   },
@@ -65,18 +64,18 @@ const questions: Question[] = [
     question: "Where did we go for our photoshoot? 📸",
     options: ["Ooty", "Pondicherry", "Kochi, Kerala"],
     correct: 2,
-    correctReaction: "Kerala! Backwaters! Nee maaka maatiya? Correct da! 🌴",
-    wrongReaction: "Aiyo paithiam! Kerala maranthutte? 😄",
-    revealText: "Kochi, Kerala. Just us, the backwaters, and a camera. 🌴",
+    correctReaction: "Kerala! The backwaters, just us. 🌴💛",
+    wrongReaction: "Nope! We went somewhere more beautiful. 🌴😄",
+    revealText: "Kochi, Kerala. Just us and a camera. 🌴💛",
     animation: "confetti",
   },
   {
     id: 6,
-    question: "Our two favourite places to visit together? 🙏",
+    question: "Our two favourite places to go together? 🙏",
     options: ["Beach & Cinema", "Temple & Prozone Mall", "Park & Restaurant"],
     correct: 1,
-    correctReaction: "Aama aama! Temple + Prozone — namma perfect combo! 😄💛",
-    wrongReaction: "Loosu! Temple + Prozone maranthutte? Seriously Buddy! 😂",
+    correctReaction: "Temple blessings and mall dates — perfect us! 💛",
+    wrongReaction: "Not quite! You know our favourite spots. 😄💛",
     revealText: "God's blessings + good food. Our kind of date. 💛",
     animation: "stars",
   },
@@ -328,7 +327,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 16,
                 }}
               >
-                6 / 6 — Vera level Buddy!
+                6 / 6 — Perfect score, Buddy! 🏆
               </p>
               <p
                 style={{
@@ -339,7 +338,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 8,
                 }}
               >
-                Nee thaan en Buddy! Perfect score! 💛
+                You know our story by heart. 💛
               </p>
             </>
           )}
@@ -355,7 +354,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 16,
                 }}
               >
-                {score} / 6 — Not bad, loosu! 😄
+                {score} / 6 — Not bad at all! 🌟
               </p>
               <p
                 style={{
@@ -366,7 +365,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 8,
                 }}
               >
-                Almost perfect. Nee thaan best. 💛
+                You know us pretty well. 💛
               </p>
             </>
           )}
@@ -382,7 +381,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 16,
                 }}
               >
-                {score} / 6 — Aiyo paithiam!
+                {score} / 6 — Really, Buddy? 😄
               </p>
               <p
                 style={{
@@ -393,7 +392,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
                   marginTop: 8,
                 }}
               >
-                Seri seri. Namma story innum padikanum! 😄💛
+                Our story deserves a reread! 💛
               </p>
             </>
           )}
@@ -449,7 +448,7 @@ export default function QuizSection({ onSectionComplete }: Props) {
           marginTop: 4,
         }}
       >
-        6 questions. No cheating, Buddy. 😄
+        6 questions. No cheating allowed. 😄💛
       </p>
 
       {/* Quiz card */}

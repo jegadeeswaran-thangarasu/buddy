@@ -3,19 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { useSectionAudio } from "@/hooks/useSectionAudio";
-import Polaroid from "@/components/ui/Polaroid";
-import type { PhotoItem } from "@/data/photos";
-
-const PLACEHOLDER =
-  "https://images.pexels.com/photos/8081418/pexels-photo-8081418.jpeg";
-
-const usPhoto: PhotoItem = {
-  id: "us-2026",
-  src: PLACEHOLDER,
-  alt: "Still us 2026",
-  caption: "Still us. 2026. 💛",
-  rotation: -1,
-};
 
 const TRAITS = [
   { emoji: "💬", label: "Emoji conversations" },
@@ -191,32 +178,35 @@ export default function StillBuddiesSection({ onSectionComplete }: Props) {
         ))}
       </div>
 
-      {/* ── Large polaroid ── */}
-      <div className="relative mt-12 mb-16 flex justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+      {/* ── Animated card (replaces polaroid) ── */}
+      <motion.div
+        className="mx-4 mt-12 mb-16 w-full max-w-sm"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{
+          backgroundColor: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 16,
+          padding: 24,
+          textAlign: "center",
+        }}
+      >
+        <p className="text-4xl mb-3">💛 + 💙</p>
+        <p
+          className="text-handwritten text-2xl"
+          style={{ color: "#FFD166" }}
         >
-          {/* Oversized polaroid wrapper */}
-          <div
-            className="bg-white shadow-2xl rounded-sm"
-            style={{
-              padding: "12px 12px 40px 12px",
-              width: "240px",
-              transform: "rotate(-1deg)",
-            }}
-          >
-            <div
-              className="relative overflow-hidden rounded-sm"
-              style={{ width: "216px", height: "216px" }}
-            >
-              <Polaroid photo={usPhoto} index={0} />
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          2016 — 2026
+        </p>
+        <p
+          className="text-sm mt-1"
+          style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Nunito', sans-serif" }}
+        >
+          Ten years of us.
+        </p>
+      </motion.div>
 
       {/* Section transition → Finale cream */}
       <div
